@@ -8,45 +8,73 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.TextView;
+
 import java.util.List;
 
-public class PersonListAdapter extends RecyclerView.Adapter<PersonListAdapter.PersonViewHolder> {
+public class PersonListAdapter extends BaseAdapter {
+    private Context context;
+    private List<Person> data;
 
-    private List<Person> mPersonList;
-
-    public PersonListAdapter(List<Person> personList) {
-        mPersonList = personList;
+    public PersonListAdapter(Context context, List<Person> data) {
+        this.context = context;
+        this.data = data;
     }
 
-    @NonNull
-    @Override
-    public PersonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_get_all_list, parent, false);
-        return new PersonViewHolder(itemView);
-    }
 
-    @Override
-    public void onBindViewHolder(@NonNull PersonViewHolder holder, int position) {
-        Person person = mPersonList.get(position);
-        holder.navnTextView.setText(person.getNavn());
-        holder.descripTextView.setText(String.valueOf(person.getDescrip()));
-    }
-
-    @Override
-    public int getItemCount() {
-        return mPersonList.size();
-    }
-
-    static class PersonViewHolder extends RecyclerView.ViewHolder {
-        TextView navnTextView;
-        TextView descripTextView;
-
-        PersonViewHolder(View itemView) {
-            super(itemView);
-            navnTextView = itemView.findViewById(R.id.navnTextView);
-            descripTextView = itemView.findViewById(R.id.descripTextView);
-
+    //Get All
+    public void updateDataGetAll(List<Person> newData) {
+        if (newData == null) {
+            return;
         }
+        // Update the data and notify the adapter that the data has changed
+        data.clear();
+        data.addAll(newData);
+        notifyDataSetChanged();
     }
+
+    //Get By ID
+    public void updateDataGetID(Person newData) {
+        if (newData == null) {
+            return;
+        }
+        // Update the data and notify the adapter that the data has changed
+        data.clear();
+        data.add(newData);
+        notifyDataSetChanged(); //Knap så vigtig i sidste ende
+    }
+
+
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        // Inflate the list item layout if it hasn't been inflated already
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.list_item_layout, parent, false);
+        }
+
+        // Get references to the TextViews in the list item layout
+        TextView nameTextView = convertView.findViewById(R.id.tvNavn);
+        TextView addressTextView = convertView.findViewById(R.id.tvDescrib);
+        TextView phoneTextView = convertView.findViewById(R.id.tvNationalitet);
+        CheckBox favoriteCheckBox = convertView.findViewById(R.id.tvFavorite);
+
+        // Get the Person object for this position in the data list
+        Person person = data.get(position);
+
+        // Set the text of the TextViews to the values from the Person object
+        nameTextView.setText("Name: " + person.getNavn());
+        addressTextView.setText("Beskrivelse: " +person.getDescrip());
+        phoneTextView.setText("Nationalitet: " +person.getNationalitet());
+        favoriteCheckBox.setChecked(person.Fav);
+
+        // Return the inflated and updated list item layout
+        return convertView;
+    }
+
+
+
 }

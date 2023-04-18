@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvNavn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TestNavn"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvDescrib"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TestDescrib"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/tvNationalitet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="TestNationalitet"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="Favorit?"/>
+        <CheckBox
+            android:id="@+id/tvFavorite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

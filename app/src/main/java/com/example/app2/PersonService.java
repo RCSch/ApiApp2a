@@ -14,7 +14,7 @@ public interface PersonService
 {
     //Create
     @POST("Person/")
-    Call<Void> addPerson(@Body Person e);
+    Call<Void> addPerson(@Body Person p);
 
     //Read
     @GET("Person/")

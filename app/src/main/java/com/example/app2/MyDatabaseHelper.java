@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+//Bruger jeg overhovedet denne her? lol
+
 public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "App2";
     private static final int DATABASE_VERSION = 1;
