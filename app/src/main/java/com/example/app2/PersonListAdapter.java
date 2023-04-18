@@ -3,15 +3,16 @@ package com.example.app2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Context;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView; //Lidt gået væk fra denne løsning
+
+import android.content.Context;
+
 
 import java.util.List;
 
@@ -23,6 +24,22 @@ public class PersonListAdapter extends BaseAdapter {
         this.context = context;
         this.data = data;
     }
+
+    @Override
+    public int getCount() {
+        return data.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return data.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
 
 
     //Get All
